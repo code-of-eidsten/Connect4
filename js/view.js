@@ -1,18 +1,13 @@
 function updateView() {
+    const baseTxt = ' sin tur. Klikk på en brikke!';
+    const gameStatus = turn == 1 ? 'Rød' + baseTxt : turn == 2 ? 'Gul' + baseTxt : 'Spiller er over!';
     document.getElementById("app").innerHTML = /*HTML*/`
-                <div id="frame">
-                    ${turn != 0 ? createClickablePieces(turn) : ''}
-                    <div id="board">
-                        ${createBoardCells()}
-                    </div>
-                    <div class="info">
-                        <span>
-                             ${turn == 1 ? 'Rød sin tur' :
-            turn == 2 ? 'Gul sin tur' :
-                'Spiller er over - rød vant!'
-        }
-                            </span>
-                    </div>
-                </div>            
-            `;
+        <h3>${gameStatus}</h3>
+        <div id="frame">
+            ${turn != 0 ? createClickablePieces(turn) : ''}
+            <div id="board">
+                ${createBoardCells()}
+            </div>
+        </div>            
+    `;
 }

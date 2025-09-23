@@ -22,41 +22,59 @@
     // dummy view
     function updateView() { }
 
-    QUnit.test('middle col, 4. row', function (assert) {
-      // arrange
-      const colIndex = 3;
-      const rowIndex = 3;
+    QUnit.module('getBoardIndex', function () {
+      QUnit.test('middle col, 4. row', function (assert) {
+        // arrange
+        const colIndex = 3;
+        const rowIndex = 3;
 
-      // act
-      const index = getBoardIndex(colIndex, rowIndex);
+        // act
+        const index = getBoardIndex(colIndex, rowIndex);
 
-      // assert
-      assert.equal(index, 24);
+        // assert
+        assert.equal(index, 24);
+      });
+
+      QUnit.test('first cell', function (assert) {
+        // arrange
+        const colIndex = 0;
+        const rowIndex = 0;
+
+        // act
+        const index = getBoardIndex(colIndex, rowIndex);
+
+        // assert
+        assert.equal(index, 0);
+      });
+
+      QUnit.test('last cell', function (assert) {
+        // arrange
+        const colIndex = 6;
+        const rowIndex = 5;
+
+        // act
+        const index = getBoardIndex(colIndex, rowIndex);
+
+        // assert
+        assert.equal(index, 41);
+      });
     });
 
-    QUnit.test('first cell', function (assert) {
-      // arrange
-      const colIndex = 0;
-      const rowIndex = 0;
+    QUnit.module('getBoardIndex', function () {
+      QUnit.test('middle col, 4. row', function (assert) {
+        // arrange
+        const colIndex = 3;
+        const rowIndex = 3;
 
-      // act
-      const index = getBoardIndex(colIndex, rowIndex);
+        // act
+        const index = getBoardIndex(colIndex, rowIndex);
 
-      // assert
-      assert.equal(index, 0);
+        // assert
+        assert.equal(index, 24);
+      });
     });
 
-    QUnit.test('last cell', function (assert) {
-      // arrange
-      const colIndex = 0;
-      const rowIndex = 0;
 
-      // act
-      const index = getBoardIndex(colIndex, rowIndex);
-
-      // assert
-      assert.equal(index, 0);
-    });
 
   </script>
 </body>

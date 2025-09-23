@@ -1,12 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<meta charset="utf-8">
+<title>QUnit</title>
+<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.24.1.css">
 
-<head>
-  <meta charset="UTF-8">
-  <title>Connect 4 - Tester</title>
-  <!-- QUnit CSS/JS -->
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="https://code.jquery.com/qunit/qunit-2.24.1.js"></script>
+  <script src="./js/common.js"></script>
+  <script src="./js/controller.js"></script>
+
+
+  <script>
+    // model
+    let turn;
+    const colCount = 7;
+    const rowCount = 6;
+    let board;
+
+    // dummy view
+    function updateView() { }
+
+    QUnit.test('middle col, 4. row', function (assert) {
+      // arrange
+      const colIndex = 3;
+      const rowIndex = 3;
+
+      // act
+      const index = getBoardIndex(colIndex, rowIndex);
+
+      // assert
+      assert.equal(index, 24);
+    });
+
+    QUnit.test('first cell', function (assert) {
+      // arrange
+      const colIndex = 0;
+      const rowIndex = 0;
+
+      // act
+      const index = getBoardIndex(colIndex, rowIndex);
+
+      // assert
+      assert.equal(index, 0);
+    });
+
+    QUnit.test('last cell', function (assert) {
+      // arrange
+      const colIndex = 0;
+      const rowIndex = 0;
+
+      // act
+      const index = getBoardIndex(colIndex, rowIndex);
+
+      // assert
+      assert.equal(index, 0);
+    });
+
   </script>
-</head>
-
+</body>
 
 </html>

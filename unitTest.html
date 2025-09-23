@@ -58,6 +58,18 @@
         // assert
         assert.equal(index, 41);
       });
+
+      QUnit.test('invalid cell', function (assert) {
+        // arrange
+        const colIndex = 60;
+        const rowIndex = 50;
+
+        // act
+        const index = getBoardIndex(colIndex, rowIndex);
+
+        // assert
+        assert.equal(index, -1);
+      });
     });
 
     QUnit.module('dropPiece', function () {
@@ -73,7 +85,7 @@
         // assert
         const expectedRow = 5;
         const expectedIndex = getBoardIndex(col, expectedRow);
-        assert.equal(expectedIndex, 1, 'Spiller 1 sin brikke la seg på siste rad i kolonnen');
+        assert.equal(board[expectedIndex], 1, 'Spiller 1 sin brikke la seg på siste rad i kolonnen');
         assert.equal(turn, 2, 'Tur går over til spiller 2 etter gyldig trekk');
       });
 
@@ -93,7 +105,7 @@
         // assert
         const expectedRow = 3;
         const expectedIndex = getBoardIndex(col, expectedRow);
-        assert.equal(expectedIndex, 1, 'Spiller 1 sin brikke la seg på tredje siste rad i kolonnen');
+        assert.equal(board[expectedIndex], 1, 'Spiller 1 sin brikke la seg på tredje siste rad i kolonnen');
         assert.equal(turn, 2, 'Tur går over til spiller 2 etter gyldig trekk');
       });
 
@@ -125,7 +137,7 @@
           0, 0, 0, 0, 0, 0, 0,
           1, 1, 1, 1, 2, 0, 0, // nederste rad
         ];
-        
+
         // act
         hasWon();
 
@@ -151,7 +163,7 @@
         assert.equal(turn, -2, 'Spiller 2 vinner vertikalt (turn = -2)');
       });
 
-      QUnit.test('diagonal vinner (spiller 1, \\-diagonal)', function (assert) {
+      QUnit.test('diagonal vinner (spiller 1, diagonal)', function (assert) {
         // arrange
         turn = 1;
         board = [

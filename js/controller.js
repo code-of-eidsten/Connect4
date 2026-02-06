@@ -7,8 +7,10 @@ function dropPiece(colIndex) {
 
     let bottomRowI = getIndex(colIndex)
     //(rowCount - 1) * colCount + colIndex;  //matteeee ughhhh
-    let brikke = board[bottomRowI];
-    console.log(brikke, " <-- er det brikke nederst i current colonne? plx funkkkk")
+    let cellContent = board[bottomRowI];
+    console.log(cellContent, " <-- er det brikke nederst i current colonne? plx funkkkk")
+    let isCellEmpty = checkIfCellEmpty(cellContent);
+    console.log(isCellEmpty, "  cella er tom?")
 
 
 
@@ -18,4 +20,10 @@ function dropPiece(colIndex) {
 //dra ut indexfinning i egen funkis, så det er lettere å skjønne for meg selv haha
 function getIndex(colIndex) {
     return (rowCount - 1) * colCount + colIndex;
+}
+
+
+//overkill med egen funksjon for en ternary? I THINK NOT
+function checkIfCellEmpty(cellContent) {
+    return cellContent == 0 ? true : false;
 }

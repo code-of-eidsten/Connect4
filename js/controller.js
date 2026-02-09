@@ -38,20 +38,26 @@ function checkIfCellEmpty(cellContent) {
 }
 
 function hasWon() {
-    if (checkForHorizontalWin()) {
-        turn = -1;
+    if (checkForHorizontalWin() || checkForVerticalWin()) {
+        // -1 = game over, player 1 har vunnet
+        // -2 = game over, player 2 har vunnet
+        if (turn === 1) {
+            turn = -1;
+        }
+        else if (turn === 2) {
+            turn = -2;
+        }
     }
 }
 
 // hvis cellContent IKKE er tom, sjekk om det er 3 like i en retning
 function checkForHorizontalWin() {
     //samme row, neste kolonne
-    console.log("check horizontal")
+
     for (let i = 0; i < rowCount; i++) {
         for (let j = 0; j <= colCount - 4; j++) { //trenger ikke sjekke hele veien bortover
             let index = getBoardIndex(j, i);
-            console.log("check horizontal Looop turn: ", turn)
-            console.log("index innhold: ", board[index])
+
             if (board[index] === turn &&
                 board[index + 1] === turn &&
                 board[index + 2] === turn &&
@@ -67,7 +73,22 @@ function checkForHorizontalWin() {
 
 function checkForVerticalWin() {
     // samme kolonne, neste row
-
+    console.log("check vertical")
+    for (let j = 0; j < colCount; j++) {
+        for (let i = 0; i < rowCount - 3; i++) {
+            let index = getBoardIndex(j, i);
+            console.log("check vertical Looop turn: ", turn)
+            console.log("index innhold: ", board[index])
+            if (board[index] === turn &&
+                board[index + 7] === turn &&
+                board[index + 14] === turn &&
+                board[index + 21] === turn
+            ) {
+                console.log("PLAYER WON: ", turn)
+                return true;
+            }
+        }
+    }
 }
 
 

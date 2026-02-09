@@ -1,5 +1,4 @@
 function dropPiece(colIndex) {
-
     for (let i = rowCount - 1; i >= 0; i--) { //telle bakover fra nederst i kolonna og oppover
         let index = getBoardIndex(colIndex, i)
 
@@ -9,12 +8,9 @@ function dropPiece(colIndex) {
             //console.log(board)
             board[index] = turn;
             hasWon();
-            //console.log(board)
             if (turn == 1) {
                 turn = 2
             } else { turn = 1 }
-            //console.log(turn)
-            updateView();
             return;
         }
 
@@ -47,6 +43,7 @@ function hasWon() {
         else if (turn === 2) {
             turn = -2;
         }
+        updateView();
     }
 }
 
@@ -63,6 +60,7 @@ function checkForHorizontalWin() {
                 board[index + 2] === turn &&
                 board[index + 3] === turn
             ) {
+                console.log("PLAYER WON : ", turn)
                 return true;
             }
         }
@@ -73,18 +71,15 @@ function checkForHorizontalWin() {
 
 function checkForVerticalWin() {
     // samme kolonne, neste row
-    console.log("check vertical")
     for (let j = 0; j < colCount; j++) {
         for (let i = 0; i < rowCount - 3; i++) {
             let index = getBoardIndex(j, i);
-            console.log("check vertical Looop turn: ", turn)
-            console.log("index innhold: ", board[index])
             if (board[index] === turn &&
                 board[index + 7] === turn &&
                 board[index + 14] === turn &&
                 board[index + 21] === turn
             ) {
-                console.log("PLAYER WON: ", turn)
+                console.log("PLAYER WON : ", turn)
                 return true;
             }
         }
@@ -104,17 +99,21 @@ function checkForDiagonalWin() {
                 board[index + 12] === turn &&
                 board[index + 18] === turn
             ) {
-                console.log("PLAYER WON DIAGONALLY: ", turn)
+                console.log("PLAYER WON: ", turn)
                 return true;
             }
         }
     }
 }
 
+
 function checkIfBoardFull() {
 
 }
 
+function stopGameAfterWinOrFull() {
+
+}
 
 function resetBoard() {
     // har vi ikke en createBoard i common? sjekk ut hva den gjør

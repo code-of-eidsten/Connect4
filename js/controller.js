@@ -38,7 +38,7 @@ function checkIfCellEmpty(cellContent) {
 }
 
 function hasWon() {
-    if (checkForHorizontalWin() || checkForVerticalWin()) {
+    if (checkForHorizontalWin() || checkForVerticalWin() || checkForDiagonalWin()) {
         // -1 = game over, player 1 har vunnet
         // -2 = game over, player 2 har vunnet
         if (turn === 1) {
@@ -95,5 +95,27 @@ function checkForVerticalWin() {
 function checkForDiagonalWin() {
     //en rad ned, en kolonne til høyre
     //en rad ned, en kolonne til venstre
+    for (let i = 0; i <= rowCount; i++) {
+        for (let j = 0; j < colCount; j++) {
+            let index = getBoardIndex(j, i);
 
+            if (board[index] === turn &&
+                board[index + 6] === turn &&
+                board[index + 12] === turn &&
+                board[index + 18] === turn
+            ) {
+                console.log("PLAYER WON DIAGONALLY: ", turn)
+                return true;
+            }
+        }
+    }
+}
+
+function checkIfBoardFull() {
+
+}
+
+
+function resetBoard() {
+    // har vi ikke en createBoard i common? sjekk ut hva den gjør
 }

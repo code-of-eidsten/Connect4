@@ -38,7 +38,9 @@ function checkIfCellEmpty(cellContent) {
 }
 
 function hasWon() {
-    checkForHorizontalWin()
+    if (checkForHorizontalWin()) {
+        turn = -1;
+    }
 }
 
 // hvis cellContent IKKE er tom, sjekk om det er 3 like i en retning
@@ -55,8 +57,7 @@ function checkForHorizontalWin() {
                 board[index + 2] === turn &&
                 board[index + 3] === turn
             ) {
-                console.log("WIN: ", turn)
-                return turn;
+                return true;
             }
         }
     }

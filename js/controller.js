@@ -6,13 +6,14 @@ function dropPiece(colIndex) {
         let isCellEmpty = checkIfCellEmpty(board[index]);
         if (isCellEmpty) { //om tom celle, legg inn currentplayers brikke
             //console.log(`celle på rad ${i} i kolonne ${colIndex} tom, kan plassere brikke`);
-            console.log(board)
+            //console.log(board)
             board[index] = turn;
-            console.log(board)
+            hasWon();
+            //console.log(board)
             if (turn == 1) {
                 turn = 2
             } else { turn = 1 }
-            console.log(turn)
+            //console.log(turn)
             updateView();
             return;
         }
@@ -37,5 +38,40 @@ function checkIfCellEmpty(cellContent) {
 }
 
 function hasWon() {
+    checkForHorizontalWin()
+}
+
+// hvis cellContent IKKE er tom, sjekk om det er 3 like i en retning
+function checkForHorizontalWin() {
+    //samme row, neste kolonne
+    console.log("check horizontal")
+    for (let i = 0; i < rowCount; i++) {
+        for (let j = 0; j <= colCount - 4; j++) { //trenger ikke sjekke hele veien bortover
+            let index = getBoardIndex(j, i);
+            console.log("check horizontal Looop turn: ", turn)
+            console.log("index innhold: ", board[index])
+            if (board[index] === turn &&
+                board[index + 1] === turn &&
+                board[index + 2] === turn &&
+                board[index + 3] === turn
+            ) {
+                console.log("WIN: ", turn)
+                return turn;
+            }
+        }
+    }
+
+}
+
+
+function checkForVerticalWin() {
+    // samme kolonne, neste row
+
+}
+
+
+function checkForDiagonalWin() {
+    //en rad ned, en kolonne til høyre
+    //en rad ned, en kolonne til venstre
 
 }
